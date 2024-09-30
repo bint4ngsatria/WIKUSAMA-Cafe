@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 
-class Signuppage extends StatefulWidget {
-  const Signuppage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<Signuppage> createState() => _SignuppageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignuppageState extends State<Signuppage> {
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool _isLoading = false;
+  bool _isPasswodVisible = false;
+
+
   @override
   Widget build(BuildContext context) {
     // Mendapatkan ukuran layar
@@ -24,7 +30,8 @@ class _SignuppageState extends State<Signuppage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: const Color(0xffe0c2a7),
-          ),
+      ),
+
       body: Container(
         width: screenWidth,
         height: screenHeight,
@@ -33,7 +40,7 @@ class _SignuppageState extends State<Signuppage> {
           children: [
 
             //Text
-            Text('Welcome!',style: TextStyle(
+            Text('Welcome Back!',style: TextStyle(
                 fontFamily: 'Lato',
                 fontStyle: FontStyle.normal,
                 color: const Color(0xFF59422E),
@@ -42,36 +49,19 @@ class _SignuppageState extends State<Signuppage> {
 
             SizedBox(height: screenHeight * 0.005,),
 
+            Text('Sign In to Continue.',style: TextStyle(
+                fontFamily: 'Lato',
+                fontStyle: FontStyle.normal,
+                color: const Color(0xFF59422E),
+                fontSize: subtitleSize,
+                fontWeight: FontWeight.w500),),
+
+            SizedBox(height: screenHeight * 0.10,),
             Column(
               children: [
-                Text(
-                  'Please provide following',
-                  style: TextStyle(
-                    fontFamily: 'Lato',
-                    fontStyle: FontStyle.normal,
-                    color: const Color(0xFF59422E),
-                    fontSize: subtitleSize,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  'details for your new account.',
-                  style: TextStyle(
-                    fontFamily: 'Lato',
-                    fontStyle: FontStyle.normal,
-                    color: const Color(0xFF59422E),
-                    fontSize: subtitleSize,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
+                TextField(
 
-
-            //Button
-
-            Column(
-              children: [
+                )
 
               ],
             )
@@ -81,3 +71,5 @@ class _SignuppageState extends State<Signuppage> {
     );
   }
 }
+
+

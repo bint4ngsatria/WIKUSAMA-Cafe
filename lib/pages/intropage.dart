@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wikusama_cafe/pages/loginpage.dart';
+import 'package:wikusama_cafe/pages/signuppage.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({super.key});
@@ -11,7 +13,7 @@ class IntroPage extends StatelessWidget {
 
     // Menyesuaikan lebar tombol dan elemen lainnya berdasarkan ukuran layar
     double buttonWidth = screenWidth * 0.8;
-    double imageSize = screenWidth * 0.6;
+    double imageSize= screenWidth * 0.6;
     double textSize = screenWidth * 0.09;
     double subtitleSize = screenWidth * 0.035;
 
@@ -38,6 +40,8 @@ class IntroPage extends StatelessWidget {
                 color: const Color(0xFF59422E),
               ),
             ),
+
+            SizedBox(height: screenHeight * 0.005),
             // Subtitle Text
             Text(
               'Widyaloka Kusuma Samekta Makarya',
@@ -64,7 +68,10 @@ class IntroPage extends StatelessWidget {
 
             // Sign In Button
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const LoginPage()),);
+              },
               style: ElevatedButton.styleFrom(
                 foregroundColor: const Color(0xFFF5EBE2),
                 backgroundColor: const Color(0xFF805F43),
@@ -87,7 +94,10 @@ class IntroPage extends StatelessWidget {
 
             // Sign Up Button
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Signuppage()),);
+              },
               style: ElevatedButton.styleFrom(
                 foregroundColor: const Color(0xFF805F43),
                 backgroundColor: const Color(0xFFF5EBE2),
