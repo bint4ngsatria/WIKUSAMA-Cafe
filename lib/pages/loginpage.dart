@@ -30,6 +30,13 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: const Color(0xffe0c2a7),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          color: Color(0xFF59422E),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
 
       body: Container(
@@ -56,15 +63,62 @@ class _LoginPageState extends State<LoginPage> {
                 fontSize: subtitleSize,
                 fontWeight: FontWeight.w500),),
 
-            SizedBox(height: screenHeight * 0.10,),
+            SizedBox(height: screenHeight * 0.08,),
             Column(
               children: [
-                TextField(
+                Form(child: Container(
+                  margin:  EdgeInsets.symmetric(horizontal: buttonWidth * 0.1),
+                  child: const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
 
-                )
 
-              ],
-            )
+                      //Email
+                      TextField(
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.person,color: Color(0xff805F43),),
+                          labelText: 'Username or Email',
+                          labelStyle: TextStyle(
+                            color: Color(0xFF463323),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'Lato',
+                          ),
+                          hintText: 'Enter your username or email',
+                          hintStyle: TextStyle(
+                            color: Color(0xffA67C58),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Lato',
+                        ),
+                          border: OutlineInputBorder()
+                      )
+                      ),
+
+
+
+
+                    ],
+
+                  ),
+                ))
+                ],
+            ),
+
+            //Button
+            ElevatedButton(onPressed: (){}, style:ElevatedButton.styleFrom(
+              foregroundColor: const Color(0xFFF5EBE2),
+              backgroundColor: const Color(0xFF805F43),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              minimumSize: Size(buttonWidth, 60),
+            ),child: const Text('Sign In',  style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+              fontFamily: 'Lato',
+            ),))
           ],
         ),
       ),

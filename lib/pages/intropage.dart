@@ -41,7 +41,7 @@ class IntroPage extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: screenHeight * 0.005),
+            SizedBox(height: screenHeight * 0.002),
             // Subtitle Text
             Text(
               'Widyaloka Kusuma Samekta Makarya',
@@ -55,7 +55,7 @@ class IntroPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
 
-            SizedBox(height: screenHeight * 0.08),
+            SizedBox(height: screenHeight * 0.10),
 
             // Image
             Image.asset(
@@ -96,7 +96,7 @@ class IntroPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const Signuppage()),);
+                  MaterialPageRoute(builder: (context) => const SignUpPage()),);
               },
               style: ElevatedButton.styleFrom(
                 foregroundColor: const Color(0xFF805F43),
@@ -115,7 +115,7 @@ class IntroPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: screenHeight * 0.02),
+            SizedBox(height: screenHeight * 0.005),
             Image.asset('assets/wikusamalogi.png',
               width: 100,
               height: 60,

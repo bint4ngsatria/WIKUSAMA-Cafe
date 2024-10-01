@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Signuppage extends StatefulWidget {
-  const Signuppage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<Signuppage> createState() => _SignuppageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _SignuppageState extends State<Signuppage> {
+class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     // Mendapatkan ukuran layar
@@ -24,6 +24,13 @@ class _SignuppageState extends State<Signuppage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: const Color(0xffe0c2a7),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          color: Color(0xFF59422E),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
           ),
       body: Container(
         width: screenWidth,
@@ -68,13 +75,25 @@ class _SignuppageState extends State<Signuppage> {
             ),
 
 
-            //Button
-
             Column(
               children: [
 
               ],
-            )
+            ),
+
+            //Button
+            ElevatedButton(onPressed: (){}, style:ElevatedButton.styleFrom(
+              foregroundColor: const Color(0xFFF5EBE2),
+              backgroundColor: const Color(0xFF805F43),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              minimumSize: Size(buttonWidth, 60),
+            ),child: const Text('Sign Up',  style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+              fontFamily: 'Lato',
+            ),))
           ],
         ),
       ),
