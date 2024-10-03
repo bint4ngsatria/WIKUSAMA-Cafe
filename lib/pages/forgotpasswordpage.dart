@@ -31,16 +31,18 @@ class _ForgotpasswordState extends State<Forgotpassword> {
           },
         ),
       ),
-      body: Container(
-        width: screenWidth,
-        height: screenHeight,
-        color: Color(0xffe0c2a7),
-        child: Column(
-          children: [
-           Image.asset('assets/willbesoon.png')
-          ],
+      body: SingleChildScrollView(
+        child: Container(
+          width: screenWidth,
+          height: screenHeight,
+          color: Color(0xffe0c2a7),
+          child: Column(
+            children: [
+              Image.asset('assets/willbesoon.png')
+            ],
+          ),
         ),
-      ),
+      )
     );
   }
 }
