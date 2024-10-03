@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wikusama_cafe/pages/Cashier/homepage.dart';
+import 'package:wikusama_cafe/pages/accountcreated.dart';
 import 'package:wikusama_cafe/pages/loginpage.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -232,7 +233,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const HomePage()),
+                      MaterialPageRoute(builder: (context) => const AccountCreated()),
                     );
                   },
                   style: ElevatedButton.styleFrom(

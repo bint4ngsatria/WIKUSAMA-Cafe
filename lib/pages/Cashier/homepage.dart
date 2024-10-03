@@ -8,8 +8,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   @override
   Widget build(BuildContext context) {
+
+
     // Mendapatkan ukuran layar
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
@@ -23,22 +26,35 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: const Color(0xffe0c2a7),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          color: const Color(0xFF59422E),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
       ),
       body: Container(
         width: screenWidth,
         height: screenHeight,
         color: const Color(0xffe0c2a7),
-        child: Column(
-          children: [Image.asset('assets/willbesoon.png')],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              //Text Welcome
+              Text(
+                'Welcome to Wikusama Cafe!',
+                style: TextStyle(
+                  fontFamily: 'Lato',
+                  fontStyle: FontStyle.normal,
+                  color: const Color(0xFF59422E),
+                  fontSize: subtitleSize,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+
+            ],
+          ),
         ),
+        // child: Column(
+        //   children: [Image.asset('assets/willbesoon.png')],
+        // ),
       ),
     );
   }
+
+
 }
