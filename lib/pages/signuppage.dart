@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wikusama_cafe/pages/Cashier/homepage.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -32,7 +33,9 @@ class _SignUpPageState extends State<SignUpPage> {
           },
         ),
           ),
-      body: Container(
+      body: SingleChildScrollView(
+        child:
+      Container(
         width: screenWidth,
         height: screenHeight,
         color: Color(0xffe0c2a7),
@@ -74,15 +77,35 @@ class _SignUpPageState extends State<SignUpPage> {
               ],
             ),
 
-
+            //Input
             Column(
               children: [
 
+            Form(
+            child: Container(
+            margin: EdgeInsets.symmetric(horizontal: buttonWidth * 0.1),
+            child: const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+
+
               ],
             ),
+      ),
+            ),
+      ],
+    ),
+
+
+
+
+
 
             //Button
-            ElevatedButton(onPressed: (){}, style:ElevatedButton.styleFrom(
+            ElevatedButton(onPressed: (){
+              Navigator.push(context,
+                MaterialPageRoute(builder: (context) =>  HomePage()),);
+            }, style:ElevatedButton.styleFrom(
               foregroundColor: const Color(0xFFF5EBE2),
               backgroundColor: const Color(0xFF805F43),
               shape: RoundedRectangleBorder(
@@ -96,6 +119,7 @@ class _SignUpPageState extends State<SignUpPage> {
             ),))
           ],
         ),
+      ),
       ),
     );
   }
