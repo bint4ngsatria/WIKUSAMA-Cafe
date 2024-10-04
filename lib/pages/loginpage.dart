@@ -4,6 +4,9 @@ import 'package:wikusama_cafe/pages/Cashier/homepage.dart';
 import 'dart:convert';
 import 'package:wikusama_cafe/pages/forgotpasswordpage.dart';
 import 'package:wikusama_cafe/pages/signuppage.dart';
+import 'package:wikusama_cafe/services/loginControler.dart';
+import 'package:get/get.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -13,6 +16,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  LoginControler controler = Get.put(LoginControler());
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isPasswordVisible = false;
@@ -168,7 +172,7 @@ class _LoginPageState extends State<LoginPage> {
 
               //Forgot Password
 
-              SizedBox(height: screenHeight * 0.010),
+              SizedBox(height: screenHeight * 0.005),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: buttonWidth * 0.1),
                 child: Align(
@@ -187,7 +191,7 @@ class _LoginPageState extends State<LoginPage> {
                         fontFamily: 'Lato',
                         fontStyle: FontStyle.normal,
                         color: Color(0xFF59422E),
-                        fontSize: 14,
+                        fontSize: 12,
                         fontWeight: FontWeight.w600,
                       ),
                     ),

@@ -35,16 +35,11 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               //Text Welcome
-              Text(
-                'Welcome to Wikusama Cafe!',
-                style: TextStyle(
-                  fontFamily: 'Lato',
-                  fontStyle: FontStyle.normal,
-                  color: const Color(0xFF59422E),
-                  fontSize: subtitleSize,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
+              Column(
+                children: [
+
+                ],
+              )
 
             ],
           ),
