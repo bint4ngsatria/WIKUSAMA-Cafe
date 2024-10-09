@@ -24,13 +24,17 @@ class AccountCreated extends StatelessWidget {
       body: Container(
         width: screenWidth,
         height: screenHeight,
-        color: Color(0xffe0c2a7),
+        color: const Color(0xffe0c2a7),
         child: Column(
           children: [
-            Image.asset('assets/dome.png',
+            Image.asset(
+              'assets/dome.png',
               width: imageSize,
-              height: imageSize,),
-            SizedBox(height: screenHeight * 0.02,),
+              height: imageSize,
+            ),
+            SizedBox(
+              height: screenHeight * 0.02,
+            ),
             Text(
               'Account Created!',
               style: TextStyle(
@@ -40,7 +44,9 @@ class AccountCreated extends StatelessWidget {
                   fontSize: textSize,
                   fontWeight: FontWeight.w800),
             ),
-            SizedBox(height: screenHeight * 0.008,),
+            SizedBox(
+              height: screenHeight * 0.008,
+            ),
             Column(
               children: [
                 Text(
@@ -66,7 +72,6 @@ class AccountCreated extends StatelessWidget {
               ],
             ),
             SizedBox(height: screenHeight * 0.08),
-
             ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -90,7 +95,9 @@ class AccountCreated extends StatelessWidget {
                     fontFamily: 'Lato',
                   ),
                 )),
-            SizedBox(height: screenHeight * 0.04,),
+            SizedBox(
+              height: screenHeight * 0.04,
+            ),
             Column(
               children: [
                 RichText(
@@ -109,7 +116,8 @@ class AccountCreated extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const PrivasiPolicy()),
+                      MaterialPageRoute(
+                          builder: (context) => const PrivasiPolicy()),
                     );
                     // Add your navigation or action here
                   },
@@ -130,6 +138,5 @@ class AccountCreated extends StatelessWidget {
         ),
       ),
     );
-
   }
 }

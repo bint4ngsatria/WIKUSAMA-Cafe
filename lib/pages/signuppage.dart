@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wikusama_cafe/pages/Cashier/homepage.dart';
 import 'package:wikusama_cafe/pages/accountcreated.dart';
 import 'package:wikusama_cafe/pages/loginpage.dart';
 
@@ -14,8 +13,10 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmpaswswordController= TextEditingController();
   bool _isPasswordVisible = false;
-  final bool _isLoading = false;
+
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     // Mendapatkan ukuran layar
@@ -86,34 +87,36 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ],
               ),
-              SizedBox(height: screenHeight * 0.08),
-
+              SizedBox(height: screenHeight * 0.05),
 
               //Input
-              Column(
-                children: [
-                  Form(
-                    child: Container(
-                      margin:
-                          EdgeInsets.symmetric(horizontal: buttonWidth * 0.1),
+              Container(
+                child: Padding(
+                  padding: EdgeInsets.all(buttonWidth * 0.1),
+                  child: Form(
+                      key: formKey,
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-
-                          //Input Sign Up Form
                           Container(
-                            decoration: BoxDecoration(
-                              color: const Color(0xffF0E0D3),
+                            padding: EdgeInsets.symmetric(horizontal: 16,vertical: buttonWidth *0.010),
+                            decoration:
+                            BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
+                              color: Color(0xffF0E0D3),
                               border: Border.all(
-                                  width: 1, color: const Color(0xff805F43)),
-                            ),
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: TextField(
-                              controller: _nameController,
-                              keyboardType: TextInputType.text,
+                                  color: const Color(0xff805F43)),),
+
+                            //Username
+                            child: TextFormField(
+                              controller: _usernameController,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Name is required ';
+                                }
+                                return null;
+                              },
                               decoration: const InputDecoration(
-                                prefixIcon: Icon(Icons.person,
+                                prefixIcon: Icon(Icons.mail,
                                     color: Color(0xff805F43)),
                                 labelStyle: TextStyle(
                                   color: Color(0xFF463323),
@@ -121,7 +124,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   fontWeight: FontWeight.w500,
                                   fontFamily: 'Lato',
                                 ),
-                                hintText: 'Enter Your Name',
+                                hintText: 'Enter your Name',
                                 hintStyle: TextStyle(
                                   color: Color(0xffA67C58),
                                   fontSize: 14,
@@ -134,18 +137,24 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                             ),
                           ),
-                          SizedBox(height: screenHeight * 0.02,),
+                          SizedBox(height: screenHeight * 0.018,),
                           Container(
-                            decoration: BoxDecoration(
-                              color: const Color(0xffF0E0D3),
+                            padding: EdgeInsets.symmetric(horizontal: 16,vertical: buttonWidth *0.010),
+                            decoration:
+                            BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
+                              color: Color(0xffF0E0D3),
                               border: Border.all(
-                                  width: 1, color: const Color(0xff805F43)),
-                            ),
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: TextField(
-                              controller: _usernameController,
-                              keyboardType: TextInputType.emailAddress,
+                                  color: const Color(0xff805F43)),),
+
+                            //Username
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Username is required ';
+                                }
+                                return null;
+                              },
                               decoration: const InputDecoration(
                                 prefixIcon: Icon(Icons.mail,
                                     color: Color(0xff805F43)),
@@ -168,21 +177,29 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                             ),
                           ),
-                          SizedBox(height: screenHeight * 0.02),
+                          SizedBox(height: screenHeight * 0.018,),
 
-
+                          //Password
                           Container(
-                            decoration: BoxDecoration(
-                              color: const Color(0xffF0E0D3),
+                            padding: EdgeInsets.symmetric(horizontal: 16,vertical: buttonWidth *0.010),
+                            decoration:
+                            BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
+                              color: Color(0xffF0E0D3),
                               border: Border.all(
-                                  width: 1, color: const Color(0xff805F43)),
-                            ),
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: TextField(
+                                  color: const Color(0xff805F43)),),
+
+
+                            child: TextFormField(
                               controller: _passwordController,
-                              keyboardType: TextInputType.text,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Password is required ';
+                                }
+                                return null;
+                              },
                               decoration: InputDecoration(
+
                                 prefixIcon: const Icon(Icons.lock,
                                     color: Color(0xff805F43)),
                                 suffixIcon: IconButton(
@@ -215,14 +232,72 @@ class _SignUpPageState extends State<SignUpPage> {
                                   borderSide: BorderSide.none,
                                 ),
                               ),
-                              obscureText: !_isPasswordVisible,
+                            ),
+                          ),
+                          SizedBox(height: screenHeight * 0.018,),
+
+                          //Confirm Password
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 16,vertical: buttonWidth *0.010),
+                            decoration:
+                            BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: Color(0xffF0E0D3),
+                              border: Border.all(
+                                  color: const Color(0xff805F43)),),
+
+
+                            child: TextFormField(
+                              controller: _confirmpaswswordController,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Password is required';
+                                }
+                                else if(_passwordController.text != _confirmpaswswordController.text){
+                                  return 'Password does not match';
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+
+                                prefixIcon: const Icon(Icons.lock,
+                                    color: Color(0xff805F43)),
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    _isPasswordVisible
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                    color: const Color(0xff805F43),
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _isPasswordVisible = !_isPasswordVisible;
+                                    });
+                                  },
+                                ),
+                                labelStyle: const TextStyle(
+                                  color: Color(0xFF463323),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: 'Lato',
+                                ),
+                                hintText: 'Confirm your password',
+                                hintStyle: const TextStyle(
+                                  color: Color(0xffA67C58),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: 'Lato',
+                                ),
+                                border: const OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
                             ),
                           ),
                         ],
-                      ),
-                    ),
-                  )
-                ],
+                      )
+                  ),
+                ),
               ),
 
 
@@ -231,10 +306,15 @@ class _SignUpPageState extends State<SignUpPage> {
               //Button
               ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const AccountCreated()),
-                    );
+
+                    if(formKey.currentState!.validate()){
+
+                    }
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //       builder: (context) => const AccountCreated()),
+                    // );
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: const Color(0xFFF5EBE2),
@@ -252,7 +332,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       fontFamily: 'Lato',
                     ),
                   )),
-              SizedBox(height: screenHeight * 0.03,),
+              SizedBox(
+                height: screenHeight * 0.03,
+              ),
               GestureDetector(
                 onTap: () {
                   Navigator.push(

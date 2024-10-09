@@ -115,7 +115,7 @@ class IntroPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: screenHeight * 0.005),
+            SizedBox(height: screenHeight * 0.008),
             Image.asset('assets/wikusamalogi.png',
               width: 100,
               height: 60,

@@ -16,7 +16,7 @@ class _ForgotpasswordState extends State<Forgotpassword> {
 
     // Menyesuaikan lebar tombol dan elemen lainnya berdasarkan ukuran layar
     double buttonWidth = screenWidth * 0.8;
-    double imageSize= screenWidth * 0.6;
+    double imageSize = screenWidth * 0.6;
     double textSize = screenWidth * 0.09;
     double subtitleSize = screenWidth * 0.035;
     return Scaffold(
@@ -25,7 +25,7 @@ class _ForgotpasswordState extends State<Forgotpassword> {
         backgroundColor: const Color(0xffe0c2a7),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          color: Color(0xFF59422E),
+          color: const Color(0xFF59422E),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -35,14 +35,12 @@ class _ForgotpasswordState extends State<Forgotpassword> {
         child: Container(
           width: screenWidth,
           height: screenHeight,
-          color: Color(0xffe0c2a7),
+          color: const Color(0xffe0c2a7),
           child: Column(
-            children: [
-              Image.asset('assets/willbesoon.png')
-            ],
+            children: [Image.asset('assets/willbesoon.png')],
           ),
         ),
-      )
+      ),
     );
   }
 }

@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:wikusama_cafe/pages/Cashier/homepage.dart';
-import 'dart:convert';
 import 'package:wikusama_cafe/pages/forgotpasswordpage.dart';
 import 'package:wikusama_cafe/pages/signuppage.dart';
-import 'package:wikusama_cafe/services/loginControler.dart';
-import 'package:get/get.dart';
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,12 +11,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  LoginControler controler = Get.put(LoginControler());
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isPasswordVisible = false;
-  final bool _isLoading = false;
 
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -49,8 +43,7 @@ class _LoginPageState extends State<LoginPage> {
           color: const Color(0xffe0c2a7),
           child: Column(
             children: [
-
-          //Text
+              //Text
               Text(
                 'Welcome Back!',
                 style: TextStyle(
@@ -71,142 +64,164 @@ class _LoginPageState extends State<LoginPage> {
                     fontWeight: FontWeight.w500),
               ),
 
-          //Input
+              //Input
               SizedBox(height: screenHeight * 0.08),
-              Column(
-                children: [
-                  Form(
-                    child: Container(
-                      margin:
-                          EdgeInsets.symmetric(horizontal: buttonWidth * 0.1),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color: const Color(0xffF0E0D3),
-                              borderRadius: BorderRadius.circular(15),
-                              border: Border.all(
-                                  width: 1, color: const Color(0xff805F43)),
-                            ),
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: TextField(
-                              controller: _usernameController,
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: const InputDecoration(
-                                prefixIcon: Icon(Icons.mail,
-                                    color: Color(0xff805F43)),
-                                labelStyle: TextStyle(
-                                  color: Color(0xFF463323),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'Lato',
-                                ),
-                                hintText: 'Enter your username or email',
-                                hintStyle: TextStyle(
-                                  color: Color(0xffA67C58),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'Lato',
-                                ),
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: screenHeight * 0.02),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: const Color(0xffF0E0D3),
-                              borderRadius: BorderRadius.circular(15),
-                              border: Border.all(
-                                  width: 1, color: const Color(0xff805F43)),
-                            ),
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: TextField(
-                              controller: _passwordController,
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                prefixIcon: const Icon(Icons.lock,
-                                    color: Color(0xff805F43)),
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    _isPasswordVisible
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
-                                    color: const Color(0xff805F43),
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      _isPasswordVisible = !_isPasswordVisible;
-                                    });
-                                  },
-                                ),
-                                labelStyle: const TextStyle(
-                                  color: Color(0xFF463323),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'Lato',
-                                ),
-                                hintText: 'Enter your password',
-                                hintStyle: const TextStyle(
-                                  color: Color(0xffA67C58),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'Lato',
-                                ),
-                                border: const OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                ),
-                              ),
-                              obscureText: !_isPasswordVisible,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
 
-              //Forgot Password
 
-              SizedBox(height: screenHeight * 0.005),
+
               Container(
-                margin: EdgeInsets.symmetric(horizontal: buttonWidth * 0.1),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Forgotpassword()),
-                      );
-                    },
-                    child: const Text(
-                      'Forgot Password ?',
-                      style: TextStyle(
-                        fontFamily: 'Lato',
-                        fontStyle: FontStyle.normal,
-                        color: Color(0xFF59422E),
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
+                child: Padding(
+                    padding: EdgeInsets.all(buttonWidth * 0.1),
+                    child: Form(
+                      key: formKey,
+                        child: Column(
+                      children: [
+                        Container(
+                              padding: EdgeInsets.symmetric(horizontal: 16,vertical: buttonWidth *0.010),
+                              decoration:
+                              BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                  color: Color(0xffF0E0D3),
+                              border: Border.all(
+                                  color: const Color(0xff805F43)),),
+
+                              //Username
+                              child: TextFormField(
+                                controller: _usernameController,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Username is required ';
+                                  }
+                                  return null;
+                                },
+                                decoration: const InputDecoration(
+                                    prefixIcon: Icon(Icons.mail,
+                                        color: Color(0xff805F43)),
+                                    labelStyle: TextStyle(
+                                      color: Color(0xFF463323),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: 'Lato',
+                                    ),
+                                  hintText: 'Enter your username',
+                                  hintStyle: TextStyle(
+                                    color: Color(0xffA67C58),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: 'Lato',
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide.none,
+                                  ),
+                                ),
+                              ),
+                            ),
+                        SizedBox(height: screenHeight * 0.018,),
+
+                        //Password
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16,vertical: buttonWidth *0.010),
+                          decoration:
+                          BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: Color(0xffF0E0D3),
+                            border: Border.all(
+                                color: const Color(0xff805F43)),),
+
+                          //Username
+                          child: TextFormField(
+                            controller: _passwordController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Password is required ';
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+
+                              prefixIcon: const Icon(Icons.lock,
+                                  color: Color(0xff805F43)),
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _isPasswordVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: const Color(0xff805F43),
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _isPasswordVisible = !_isPasswordVisible;
+                                  });
+                                },
+                              ),
+                              labelStyle: const TextStyle(
+                                color: Color(0xFF463323),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                fontFamily: 'Lato',
+                              ),
+                              hintText: 'Enter your password',
+                              hintStyle: const TextStyle(
+                                color: Color(0xffA67C58),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: 'Lato',
+                              ),
+                              border: const OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                ),
                 ),
               ),
 
+          SizedBox(height: screenHeight * 0.003,),
 
-              SizedBox(height: screenHeight * 0.03),
-              ElevatedButton(
+          //Forgot Password
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: buttonWidth * 0.10),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const HomePage()),
+                    MaterialPageRoute(
+                        builder: (context) => const Forgotpassword()),
                   );
+                },
+                child: const Text(
+                  'Forgot Password ?',
+                  style: TextStyle(
+                    fontFamily: 'Lato',
+                    fontStyle: FontStyle.normal,
+                    color: Color(0xFF59422E),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+          ),
+
+
+              //Forgot Password
+
+
+              SizedBox(height: screenHeight * 0.02),
+              ElevatedButton(
+                onPressed: () {
+                  if(formKey.currentState!.validate()){
+
+                  }
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => const HomePage()),
+                  // );
                 },
                 style: ElevatedButton.styleFrom(
                   foregroundColor: const Color(0xFFF5EBE2),

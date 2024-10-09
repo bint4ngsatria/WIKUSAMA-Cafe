@@ -31,15 +31,27 @@ class _HomePageState extends State<HomePage> {
         width: screenWidth,
         height: screenHeight,
         color: const Color(0xffe0c2a7),
-        child: SingleChildScrollView(
+        child: const SingleChildScrollView(
           child: Column(
             children: [
               //Text Welcome
               Column(
                 children: [
+                  Text('Welcome !!',
+                  )
+
 
                 ],
-              )
+              ),
+
+
+              //Search Bar
+              Padding(padding: 
+              EdgeInsets.all(16)
+              
+              ),
+
+
 
             ],
           ),
